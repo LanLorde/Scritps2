@@ -1,1 +1,2 @@
-# Scritps2
+# Scritps
+# Repo for PS scripts.
