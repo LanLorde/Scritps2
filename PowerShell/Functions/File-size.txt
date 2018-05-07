@@ -1,0 +1,31 @@
+PS> gc c:\scripts\type\shrf.ps1xml
+
+<Types>
+<Type>
+  <Name>System.IO.FileInfo</Name>
+   <Members>
+      <ScriptProperty>
+          <Name>FileSize</Name>
+          <GetScriptBlock>
+             switch($this.length) {
+               { $_ -gt 1tb } 
+                      { "{0:n2} TB" -f ($_ / 1tb) }
+               { $_ -gt 1gb } 
+                      { "{0:n2} GB" -f ($_ / 1gb) }
+               { $_ -gt 1mb } 
+                      { "{0:n2} MB " -f ($_ / 1mb) }
+               { $_ -gt 1kb } 
+                      { "{0:n2} KB " -f ($_ / 1Kb) }
+               default  
+                      { "{0} B " -f $_} 
+             }      
+          </GetScriptBlock>
+     </ScriptProperty>   
+  </Members>
+</Type>
+</Types>
+
+PS> Update-TypeData -AppendPath c:\scripts\type\shrf.ps1xml -verbose
+PS> get-childItem $env:windir  | select Name,FileSize,length
+PS> # you can paste this in your profile
+PS> # (Calculate Folder Size) Measure-Object -property length -sum

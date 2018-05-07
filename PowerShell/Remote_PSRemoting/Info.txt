@@ -1,0 +1,10 @@
+Import-Module .\Remote_PSRemoting.psd1
+Get-Command -Module Remote_PSRemoting
+	Returns:
+		Restart-WindowsFirewall
+ 		Restart-WinRM
+ 		Set-WinRMFirewallRule
+ 		Set-WINRMListener
+ 		Set-WinRMStartup
+
+Run from bottom up.
